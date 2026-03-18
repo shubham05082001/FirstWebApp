@@ -1,0 +1,169 @@
+@model FirstWebApp.Models.LoginModel
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Login - FirstWebApp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Icons & CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/linearicons@1.0.0/dist/web-font/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pe7-icon@1.0.4/dist/dist/pe-icon-7-stroke.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+
+    <!-- Custom CSS -->
+    <link href="~/styles/css/base.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div class="app-container app-theme-white body-tabs-shadow">
+        <div class="app-container">
+            <div class="h-100">
+                <div class="row g-0 h-100">
+
+                    <!-- LEFT SLIDER -->
+                    <div class="d-none d-lg-block col-lg-4">
+                        <div class="slider-light">
+                            <div class="slick-slider">
+
+                                <div>
+                                    <div
+                                        class="position-relative h-100 d-flex justify-content-center align-items-center bg-plum-plate">
+                                        <div class="slide-img-bg"
+                                             style="background-image:url('/images/originals/city.jpg');"></div>
+                                        <div class="slider-content text-white">
+                                            <h3>Perfect Balance</h3>
+                                            <p>Secure authentication system with OTP verification.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div
+                                        class="position-relative h-100 d-flex justify-content-center align-items-center bg-premium-dark">
+                                        <div class="slide-img-bg"
+                                             style="background-image:url('/images/originals/citynights.jpg');"></div>
+                                        <div class="slider-content text-white">
+                                            <h3>Scalable & Secure</h3>
+                                            <p>Lightweight Bootstrap UI for enterprise apps.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div
+                                        class="position-relative h-100 d-flex justify-content-center align-items-center bg-sunny-morning">
+                                        <div class="slide-img-bg"
+                                             style="background-image:url('/images/originals/citydark.jpg');"></div>
+                                        <div class="slider-content text-white">
+                                            <h3>Modern Dashboard</h3>
+                                            <p>Professional UI integration with ASP.NET MVC.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT LOGIN AREA -->
+                    <div class="col-md-12 col-lg-8 d-flex justify-content-center align-items-center bg-white h-100">
+                        <div class="app-login-box col-sm-12 col-md-10 col-lg-9">
+
+                            <div class="app-logo"></div>
+
+                            <form asp-action="Login" asp-controller="Accounts" method="post">
+
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-6 col-md-8">
+
+                                        <h4 class="mb-2">
+                                            <span class="d-block">Welcome back,</span>
+                                            <span>Please sign in to your account.</span>
+                                        </h4>
+
+                                        <div class="divider"></div>
+
+                                        @if (ViewBag.Error != null)
+                                        {
+                                            <div class="alert alert-danger">@ViewBag.Error</div>
+                                        }
+
+                                        <!-- Email -->
+                                        <div class="mb-3">
+                                            <label class="form-label">Email</label>
+                                            <input asp-for="Email" class="form-control" placeholder="Email here..." />
+                                            <span asp-validation-for="Email" class="text-danger"></span>
+                                        </div>
+
+                                        <!-- Password -->
+                                        <div class="mb-3">
+                                            <label class="form-label">Password</label>
+                                            <input asp-for="Password" type="password" class="form-control"
+                                                   placeholder="Password here..." />
+                                            <span asp-validation-for="Password" class="text-danger"></span>
+                                        </div>
+
+                                        <!-- Remember Me -->
+                                        <div class="form-check mb-3">
+                                            <input asp-for="RememberMe" class="form-check-input" id="rememberCheck" />
+                                            <label class="form-check-label" for="rememberCheck">
+                                                Keep me logged in
+                                            </label>
+                                        </div>
+
+                                        <!-- Forgot Password -->
+                                        <div class="mb-3">
+                                            <a asp-action="ForgotPassword" asp-controller="Accounts"
+                                                   class="text-primary fw-semibold text-decoration-none">
+                                                Forgot Password ?
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="divider"></div>
+
+                                <div class="d-flex align-items-center">
+                                    <div class="ms-auto">
+                                        <button type="submit" class="btn btn-primary btn-lg">
+                                            Login to Dashboard
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+        $('.slick-slider').slick({
+        dots: true,
+        autoplay: true,
+        autoplaySpeed: 2500
+        });
+        });
+    </script>
+
+</body>
+
+</html>

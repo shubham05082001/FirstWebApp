@@ -1,0 +1,99 @@
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>OTP Verification</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet"      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link href="~/styles/css/base.css" rel="stylesheet">
+
+    <style>
+            .otp-box {
+                width: 55px;
+                height: 55px;
+                font-size: 24px;
+                text-align: center;
+                margin: 5px;
+                border-radius: 10px;
+                border: 1px solid #ced4da;
+            }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="app-container app-theme-white body-tabs-shadow">
+        <div class="app-container">
+            <div class="h-100">
+                <div class="h-100 g-0 row">
+
+                    <!-- LEFT SLIDER -->
+                    <div class="d-none d-lg-block col-lg-4">
+                        <div class="slider-light">
+                            <div class="slick-slider">
+
+                                <div>
+                                    <div
+                                        class="position-relative h-100 d-flex justify-content-center align-items-center bg-malibu-beach">
+                                        <div class="slider-content text-white text-center">
+                                            <h3>Email Verification</h3>
+                                            <p>Enter the OTP sent to your registered email.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT FORM -->
+                    <div class="h-100 d-flex bg-white justify-content-center align-items-center col-md-12 col-lg-8">
+
+                        <div class="app-login-box col-md-6">
+
+                            <h4 class="mb-3">OTP Verification</h4>
+                            <p class="text-muted">Enter 6 digit OTP</p>
+
+                            @if (ViewBag.Error != null)
+                            {
+                                <div class="alert alert-danger">@ViewBag.Error</div>
+                            }
+
+                            <form method="post">
+
+                                <div class="d-flex justify-content-center mb-4">
+                                    <input class="otp-box" name="o1" maxlength="1" required />
+                                    <input class="otp-box" name="o2" maxlength="1" required />
+                                    <input class="otp-box" name="o3" maxlength="1" required />
+                                    <input class="otp-box" name="o4" maxlength="1" required />
+                                    <input class="otp-box" name="o5" maxlength="1" required />
+                                    <input class="otp-box" name="o6" maxlength="1" required />
+                                </div>
+
+                                <div class="d-grid mb-3">
+                                    <button class="btn btn-primary btn-lg">Verify OTP</button>
+                                </div>
+
+                                <div class="text-center">
+                                    <a href="#" class="text-primary">Resend OTP</a>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+@model FirstWebApp.Models.User
+
+@{
+    Layout = "_DashboardLayout";
+}
+
+<div class="card shadow p-4">
+
+    <h3 class="mb-4">Edit Profile</h3>
+
+    <form asp-action="EditProfile" method="post">
+
+        <input type="hidden" asp-for="Id" />
+
+        <div class="row">
+
+            <div class="col-md-6 mb-3">
+                <label>Name</label>
+                <input asp-for="Name" class="form-control" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label>Email</label>
+                <input asp-for="Email" class="form-control" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label>Phone</label>
+                <input asp-for="Phone" class="form-control" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label>Date of Birth</label>
+                <input asp-for="DOB" type="date" class="form-control" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label>New Password</label>
+                <input type="password" name="password" class="form-control" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label>Role</label>
+                <input asp-for="Role" class="form-control" readonly />
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label>Status</label>
+                <input asp-for="Status" class="form-control" readonly />
+            </div>
+
+        </div>
+
+        <button class="btn btn-success">
+            Update Profile
+        </button>
+
+    </form>
+
+</div>

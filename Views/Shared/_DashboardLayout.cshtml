@@ -1,0 +1,908 @@
+@using Microsoft.AspNetCore.Authentication
+@using Microsoft.AspNetCore.Authorization
+@{
+    var username = User.Identity?.Name ?? "User";
+}
+
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Minimal Dashboard II - Examples of just how powerful ArchitectUI really is!</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
+    <meta name="description" content="Examples of just how powerful ArchitectUI really is!">
+    <!-- Disable tap highlight on IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" />
+
+    <!-- Linearicons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/linearicons@1.0.0/dist/web-font/style.css" />
+
+    <!-- PE Icon 7 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pe7-icon@1.0.4/dist/dist/pe-icon-7-stroke.min.css" />
+
+    <!-- Your Custom CSS -->
+    <link href="~/styles/css/base.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="app-container app-theme-white body-tabs-shadow fixed-header fixed-sidebar">
+        <div class="app-header header-shadow">
+            <div class="app-header__logo">
+                <div class="logo-src"></div>
+                <div class="header__pane ms-auto">
+                    <div>
+                        <button type="button" class="hamburger close-sidebar-btn hamburger--elastic"
+                                data-class="closed-sidebar">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="app-header__mobile-menu">
+                <div>
+                    <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="app-header__menu">
+                <span>
+                    <button type="button"
+                            class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+                        <span class="btn-icon-wrapper">
+                            <i class="fa fa-ellipsis-v fa-w-6"></i>
+                        </span>
+                    </button>
+                </span>
+            </div>
+            <div class="app-header__content">
+                <div class="app-header-left">
+                    <div class="search-wrapper">
+                        <div class="input-holder">
+                            <input type="text" class="search-input" placeholder="Type to search">
+                            <button class="search-icon">
+                                <span></span>
+                            </button>
+                        </div>
+                        <button class="btn-close"></button>
+                    </div>
+                    <ul class="header-megamenu nav">
+                        <li class="nav-item">
+                            <a href="javascript:void(0);" data-bs-placement="bottom" rel="popover-focus"
+                                   data-offset="300" data-toggle="popover-custom" class="nav-link">
+                                <i class="nav-link-icon pe-7s-gift"></i>
+                                Mega Menu
+                                <i class="fa fa-angle-down ms-2 opacity-5"></i>
+                            </a>
+
+                        </li>
+                        <li class="btn-group nav-item">
+                            <a class="nav-link" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="badge rounded-pill bg-danger ms-0 me-2">4</span>
+                                Settings
+                                <i class="fa fa-angle-down ms-2 opacity-5"></i>
+                            </a>
+                        </li>
+                        <li class="dropdown nav-item">
+                            <a aria-haspopup="true" data-bs-toggle="dropdown" class="nav-link" aria-expanded="false">
+                                <i class="nav-link-icon pe-7s-settings"></i>
+                                Projects
+                                <i class="fa fa-angle-down ms-2 opacity-5"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="app-header-right">
+                    <div class="header-dots">
+                        <div class="dropdown">
+                            <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown"
+                                    class="p-0 me-2 btn btn-link">
+                                <span class="icon-wrapper icon-wrapper-alt rounded-circle">
+                                    <span class="icon-wrapper-bg bg-primary"></span>
+                                    <i class="icon text-primary ion-android-apps"></i>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="dropdown">
+                            <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown"
+                                    class="p-0 me-2 btn btn-link">
+                                <span class="icon-wrapper icon-wrapper-alt rounded-circle">
+                                    <span class="icon-wrapper-bg bg-danger"></span>
+                                    <i class="icon text-danger icon-anim-pulse ion-android-notifications"></i>
+                                    <span class="badge badge-dot badge-dot-sm bg-danger">Notifications</span>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="dropdown">
+                            <button type="button" data-bs-toggle="dropdown" class="p-0 me-2 btn btn-link">
+                                <span class="icon-wrapper icon-wrapper-alt rounded-circle">
+                                    <span class="icon-wrapper-bg bg-focus"></span>
+                                    <span class="language-icon opacity-8 flag large DE"></span>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="dropdown">
+                            <button type="button" aria-haspopup="true" data-bs-toggle="dropdown"
+                                    data-bs-placement="bottom" title="Tooltip on bottom" aria-expanded="false"
+                                    class="p-0 btn btn-link dd-chart-btn">
+                                <span class="icon-wrapper icon-wrapper-alt rounded-circle">
+                                    <span class="icon-wrapper-bg bg-success"></span>
+                                    <i class="icon text-success ion-ios-analytics"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="header-btn-lg pe-0">
+                        <div class="widget-content p-0">
+                            <div class="widget-content-wrapper">
+                                <div class="widget-content-left">
+                                    <div class="btn-group">
+                                        <a data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                               class="p-0 btn">
+                                            <img width="42" class="rounded-circle" src="images/avatars/1.jpg" alt="">
+                                            <i class="fa fa-angle-down ms-2 opacity-8"></i>
+                                        </a>
+                                        <div tabindex="-1" role="menu" aria-hidden="true"
+                                             class="rm-pointers dropdown-menu-lg dropdown-menu dropdown-menu-right">
+                                            <div class="dropdown-menu-header">
+                                                <div class="dropdown-menu-header-inner bg-info">
+                                                    <div class="menu-header-image opacity-2"
+                                                         style="background-image: url('images/dropdown-header/city3.jpg');">
+                                                    </div>
+                                                    <div class="menu-header-content text-start">
+                                                        <div class="widget-content p-0">
+                                                            <div class="widget-content-wrapper">
+                                                                <div class="widget-content-left me-3">
+                                                                    <img width="42" class="rounded-circle"
+                                                                         src="images/avatars/1.jpg" alt="">
+                                                                </div>
+                                                                <div class="widget-content-left">
+                                                                    <div class="widget-heading">
+                                                                        @ViewBag.UserName
+                                                                    </div>
+                                                                    <div class="widget-subheading opacity-8">A short
+                                                                        profile description</div>
+                                                                    </div>
+                                                                    <div class="widget-content-right me-2">
+                                                                        <button
+                                                                        class="btn-pill btn-shadow btn-shine btn btn-focus">Logout</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="scroll-area-xs" style="height: 150px;">
+                                                    <div class="scrollbar-container ps">
+                                                        <ul class="nav flex-column">
+                                                            <li class="nav-item-header nav-item">Activity</li>
+                                                            <li class="nav-item">
+                                                                <a href="javascript:void(0);" class="nav-link">
+                                                                    Chat
+                                                                    <div class="ms-auto badge rounded-pill bg-info">8</div>
+                                                                </a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a href="javascript:void(0);" class="nav-link">Recover
+                                                                    Password</a>
+                                                                </li>
+                                                                <li class="nav-item-header nav-item">
+                                                                    My Account
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                    <a href="javascript:void(0);" class="nav-link">
+                                                                        Settings
+                                                                        <div class="ms-auto badge bg-success">New</div>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                    <a href="javascript:void(0);" class="nav-link">
+                                                                        Messages
+                                                                        <div class="ms-auto badge bg-warning">512</div>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                    <a href="javascript:void(0);" class="nav-link">Logs</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <ul class="nav flex-column">
+                                                        <li class="nav-item-divider mb-0 nav-item"></li>
+                                                    </ul>
+                                                    <div class="grid-menu grid-menu-2col">
+                                                        <div class="g-0 row">
+                                                            <div class="col-sm-6">
+                                                                <button
+                                                                    class="btn-icon-vertical btn-transition btn-transition-alt pt-2 pb-2 btn btn-outline-warning">
+                                                                    <i
+                                                                    class="pe-7s-chat icon-gradient bg-amy-crisp btn-icon-wrapper mb-2"></i>
+                                                                    Message Inbox
+                                                                </button>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <button
+                                                                    class="btn-icon-vertical btn-transition btn-transition-alt pt-2 pb-2 btn btn-outline-danger">
+                                                                    <i
+                                                                    class="pe-7s-ticket icon-gradient bg-love-kiss btn-icon-wrapper mb-2"></i>
+                                                                    <b>Support Tickets</b>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <ul class="nav flex-column">
+                                                        <li class="nav-item-divider nav-item"></li>
+                                                        <li class="nav-item-btn text-center nav-item">
+                                                            <button class="btn-wide btn btn-primary btn-sm"> Open
+                                                                Messages</button>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="widget-content-left  ms-3 header-user-info">
+                                                <div class="widget-heading">
+                                                    @User.Identity?.Name
+                                                </div>
+                                                <div class="widget-subheading"> VP People Manager</div>
+                                            </div>
+                                            <div class="widget-content-right header-user-info ms-3">
+                                                <button type="button"
+                                                        class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
+                                                    <i class="fa text-white fa-calendar pe-1 ps-1"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="header-btn-lg">
+                                    <button type="button" class="hamburger hamburger--elastic open-right-drawer">
+                                        <span class="hamburger-box">
+                                            <span class="hamburger-inner"></span>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="app-main">
+                        <div class="app-sidebar sidebar-shadow">
+                            <div class="app-header__logo">
+                                <div class="logo-src"></div>
+                                <div class="header__pane ms-auto">
+                                    <div>
+                                        <button type="button" class="hamburger close-sidebar-btn hamburger--elastic"
+                                                data-class="closed-sidebar">
+                                            <span class="hamburger-box">
+                                                <span class="hamburger-inner"></span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="app-header__mobile-menu">
+                                <div>
+                                    <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                                        <span class="hamburger-box">
+                                            <span class="hamburger-inner"></span>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="app-header__menu">
+                                <span>
+                                    <button type="button"
+                                            class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+                                        <span class="btn-icon-wrapper">
+                                            <i class="fa fa-ellipsis-v fa-w-6"></i>
+                                        </span>
+                                    </button>
+                                </span>
+                            </div>
+                            <div class="scrollbar-sidebar">
+                                <div class="app-sidebar__inner">
+                                    <ul class="vertical-nav-menu">
+                                        <li class="app-sidebar__heading">Menu</li>
+                                        <li class="mm-active">
+                                            <a href="#">
+                                                <i class="metismenu-icon pe-7s-rocket"></i>
+                                                Dashboards
+                                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                            </a>
+                                            <ul class="mm-show">
+                                                <li>
+                                                    <a href="index.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Analytics
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="dashboards-commerce.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Commerce
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="dashboards-sales.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Sales
+                                                    </a>
+                                                </li>
+                                                <li class="mm-active">
+                                                    <a href="#">
+                                                        <i class="metismenu-icon"></i>
+                                                        Minimal
+                                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                                    </a>
+                                                    <ul class="mm-show">
+                                                        <li>
+                                                            <a href="dashboards-minimal-1.html">
+                                                                <i class="metismenu-icon"></i>
+                                                                Variation 1
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="dashboards-minimal-2.html" class="mm-active">
+                                                                <i class="metismenu-icon"></i>
+                                                                Variation 2
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a href="dashboards-crm.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        CRM
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="metismenu-icon pe-7s-browser"></i>
+                                                Pages
+                                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                            </a>
+                                            <ul>
+                                                <li>
+                                                    <a href="pages-login.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Login
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="pages-login-boxed.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Login Boxed
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="pages-register.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Register
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="pages-register-boxed.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Register Boxed
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="pages-forgot-password.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Forgot Password
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="pages-forgot-password-boxed.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Forgot Password Boxed
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="metismenu-icon pe-7s-plugin"></i>
+                                                Applications
+                                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                            </a>
+                                            <ul>
+                                                <li>
+                                                    <a href="apps-mailbox.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Mailbox
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="apps-chat.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Chat
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="apps-faq-section.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        FAQ Section
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="metismenu-icon"></i>
+                                                        Forums
+                                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                                    </a>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="apps-forum-list.html">
+                                                                <i class="metismenu-icon"></i>
+                                                                Forum Listing
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="apps-forum-threads.html">
+                                                                <i class="metismenu-icon"></i>
+                                                                Forum Threads
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="apps-forum-discussion.html">
+                                                                <i class="metismenu-icon"></i>
+                                                                Forum Discussion
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="app-sidebar__heading">UI Components</li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="metismenu-icon pe-7s-diamond"></i>
+                                                Elements
+                                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                            </a>
+                                            <ul>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="metismenu-icon"></i>
+                                                        Buttons
+                                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                                    </a>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="elements-buttons-standard.html">
+                                                                <i class="metismenu-icon"></i>
+                                                                Standard
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="elements-buttons-pills.html">
+                                                                <i class="metismenu-icon"></i>
+                                                                Pills
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="elements-buttons-square.html">
+                                                                <i class="metismenu-icon"></i>
+                                                                Square
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="elements-buttons-shadow.html">
+                                                                <i class="metismenu-icon"></i>
+                                                                Shadow
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="elements-buttons-icons.html">
+                                                                <i class="metismenu-icon"></i>
+                                                                With Icons
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a href="elements-dropdowns.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Dropdowns
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="elements-icons.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Icons
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="elements-badges-labels.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Badges
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="elements-cards.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Cards
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="elements-loaders.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Loading Indicators
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="elements-list-group.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        List Groups
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="elements-navigation.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Navigation Menus
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="elements-timelines.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Timeline
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="elements-utilities.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Utilities
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="metismenu-icon pe-7s-car"></i>
+                                                Components
+                                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                            </a>
+                                            <ul>
+                                                <li>
+                                                    <a href="components-tabs.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Tabs
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="components-accordions.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Accordions
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="components-notifications.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Notifications
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="components-modals.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Modals
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="components-loading-blocks.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Loading Blockers
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="components-progress-bar.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Progress Bar
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="components-tooltips-popovers.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Tooltips &amp; Popovers
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="components-carousel.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Carousel
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="components-calendar.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Calendar
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="components-pagination.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Pagination
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="components-count-up.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Count Up
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="components-scrollable-elements.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Scrollable
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="components-tree-view.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Tree View
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="components-maps.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Maps
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="components-ratings.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Ratings
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="components-image-crop.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Image Crop
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="components-guided-tours.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Guided Tours
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="metismenu-icon pe-7s-display2"></i>
+                                                Tables
+                                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                            </a>
+                                            <ul>
+                                                <li>
+                                                    <a href="tables-data-tables.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Data Tables
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="tables-regular.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Regular Tables
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="tables-grid.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Grid Tables
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="app-sidebar__heading">Dashboard Widgets</li>
+                                        <li>
+                                            <a href="widgets-chart-boxes.html">
+                                                <i class="metismenu-icon pe-7s-graph"></i>
+                                                Chart Boxes 1
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="widgets-chart-boxes-2.html">
+                                                <i class="metismenu-icon pe-7s-way"></i>
+                                                Chart Boxes 2
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="widgets-chart-boxes-3.html">
+                                                <i class="metismenu-icon pe-7s-ball"></i>
+                                                Chart Boxes 3
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="Accounts" asp-action="ProfileWidgets">
+                                                <i class="metismenu-icon pe-7s-id"></i>
+                                                Profile Boxes
+                                            </a>
+                                        </li>
+                                        <li class="app-sidebar__heading">Forms</li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="metismenu-icon pe-7s-light"></i>
+                                                Elements
+                                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                            </a>
+                                            <ul>
+                                                <li>
+                                                    <a href="forms-controls.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Controls
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="forms-layouts.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Layouts
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="forms-validation.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Validation
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="forms-wizard.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Wizard
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="metismenu-icon pe-7s-joy"></i>
+                                                Widgets
+                                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                            </a>
+                                            <ul>
+                                                <li>
+                                                    <a href="forms-datepicker.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Datepicker
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="forms-range-slider.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Range Slider
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="forms-input-selects.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Input Selects
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="forms-toggle-switch.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Toggle Switch
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="forms-wysiwyg-editor.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        WYSIWYG Editor
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="forms-input-mask.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Input Mask
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="forms-clipboard.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Clipboard
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="forms-textarea-autosize.html">
+                                                        <i class="metismenu-icon"></i>
+                                                        Textarea Autosize
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="app-sidebar__heading">Charts</li>
+                                        <li>
+                                            <a href="charts-chartjs.html">
+                                                <i class="metismenu-icon pe-7s-graph2"></i>
+                                                ChartJS
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="charts-apexcharts.html">
+                                                <i class="metismenu-icon pe-7s-graph"></i>
+                                                Apex Charts
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="charts-sparklines.html">
+                                                <i class="metismenu-icon pe-7s-graph1"></i>
+                                                Chart Sparklines
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="app-main__outer">
+                            <div class="app-main__inner">
+
+                                @RenderBody() <!-- ⭐ MUST BE HERE -->
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="app-drawer-overlay d-none animated fadeIn"></div>
+                    <!-- plugin dependencies -->
+                    <!-- jQuery -->
+                    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+                    <!-- Bootstrap Bundle -->
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+                    <!-- Moment JS -->
+                    <script src="https://cdn.jsdelivr.net/npm/moment@2.30.1/moment.min.js"></script>
+
+                    <!-- MetisMenu -->
+                    <script src="https://cdn.jsdelivr.net/npm/metismenu@3.0.7/dist/metisMenu.min.js"></script>
+
+                    <!-- Bootstrap Toggle -->
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
+                    <!-- Circle Progress -->
+                    <script src="https://cdn.jsdelivr.net/npm/jquery-circle-progress@1.2.2/dist/circle-progress.min.js"></script>
+
+                    <!-- Perfect Scrollbar -->
+                    <script src="https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.5.5/dist/perfect-scrollbar.min.js"></script>
+
+                    <!-- Toastr -->
+                    <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.js"></script>
+
+                    <!-- FancyTree -->
+                    <script
+                    src="https://cdn.jsdelivr.net/npm/jquery.fancytree@2.38.4/dist/jquery.fancytree-all-deps.min.js"></script>
+
+                    <!-- ApexCharts -->
+                    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+                    <!-- custome.js -->
+                    <script type="text/javascript" src="~/js/charts/apex-charts.js"></script>
+                    <script type="text/javascript" src="~/js/circle-progress.js"></script>
+                    <script type="text/javascript" src="~/js/demo.js"></script>
+                    <script type="text/javascript" src="~/js/scrollbar.js"></script>
+                    <script type="text/javascript" src="~/js/toastr.js"></script>
+                    <script type="text/javascript" src="~/js/treeview.js"></script>
+                    <script type="text/javascript" src="~/js/form-components/toggle-switch.js"></script>
+                    <script type="text/javascript" src="~/js/app.js"></script>
+                </body>
+
+            </html>
