@@ -59,13 +59,14 @@ namespace FirstWebApp.Controllers
         }
 
         // ================= LOGIN OTP =================
-
+        [Authorize]
         [HttpGet]
         public IActionResult VerifyOtp()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> VerifyOtp(string otp)
         {
