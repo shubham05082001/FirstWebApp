@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root@123
+      MYSQL_DATABASE: firstwebdb
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  webapp:
+    build: .
+    container_name: firstwebapp
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
+    environment:
+      ConnectionStrings__DefaultConnection: "server=mysql;port=3306;database=firstwebdb;user=root;password=root@123"
+
+volumes:
+  mysql_data:
